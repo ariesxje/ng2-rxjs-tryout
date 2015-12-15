@@ -11,6 +11,7 @@ import {Component, bootstrap, View} from "angular2/angular2";
 import {ChatNavBar} from "./components/ChatNavBar";
 import {ChatThreads} from "./components/ChatThreads";
 import {ChatWindow} from "./components/ChatWindow";
+import {MyTest} from './components/MyTest';
 
 /*
  * Injectables
@@ -35,13 +36,15 @@ require("css/styles.scss");
 @View({
   directives: [ChatNavBar,
                ChatThreads,
-               ChatWindow],
+               ChatWindow,
+                MyTest],
   template: `
   <div>
     <nav-bar></nav-bar>
     <div class="container">
       <chat-threads></chat-threads>
       <chat-window></chat-window>
+      <my-test></my-test>
     </div>
   </div>
   `
