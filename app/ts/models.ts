@@ -41,3 +41,12 @@ export class Message {
     this.thread          = obj && obj.thread          || null;
   }
 }
+
+export class Todo {
+  text: string;
+  isDone: boolean;
+   constructor(text?: string) {
+     this.text = text || '';
+     this.isDone = false;
+   }
+}

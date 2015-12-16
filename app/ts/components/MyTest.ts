@@ -3,9 +3,10 @@
  */
 import {Component, View, NgFor, FORM_DIRECTIVES} from "angular2/angular2";
 import {RxPipe} from "../util/RxPipe";
+import {Todo} from "../models";
 
 interface ItemOperation extends Function {
-    (list: string[]): string[];
+    (list: Todo[]): Todo[];
 }
 
 @Component({
@@ -16,40 +17,34 @@ interface ItemOperation extends Function {
     pipes: [RxPipe],
     template: `
     <div>
-        <input type="text" [(ng-model)]="a"><button on-click="add()">add</button>
-        <div *ng-for="#item of listStream | rx; #index=index">{{item}} <a href="#" on-click="delete(index)">x</a></div>
+        <input type="text" [(ng-model)]="newTodo"><button on-click="add()">add</button>
+        <div *ng-for="#item of listStream | rx; #index=index">{{item.text}} <a href="#" on-click="delete(index)">x</a></div>
     </div>
     `
 })
 
 export class MyTest {
-    a: string;
-    aa: Rx.Observable<string>;
-    bb: Rx.Observable<string>;
-    list: string[] = [];
-    listStream: Rx.Observable<string[]>;
-    newItemStream: Rx.Subject<string> = new Rx.Subject<string>();
+    newTodo: string;
+    list: Todo[] = [];
+    listStream: Rx.Observable<Todo[]>;
+    newItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
     updateStream: Rx.Subject<any> = new Rx.Subject<any>();
-    addItemStream: Rx.Subject<string> = new Rx.Subject<string>();
+    addItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
     existingItemStream: Rx.Subject<number> = new Rx.Subject<number>();
     deleteItemStream: Rx.Subject<number> = new Rx.Subject<number>();
     constructor() {
-        this.a = "";
-        this.list = ["item 1"];
+        this.newTodo = "";
+        this.list = [new Todo('item 1')];
     }
 
     onInit(): void {
-        this.aa = Rx.Observable.of(this.a);
-        this.bb = this.aa.map((text: string) => { return text + " a"});
-        this.bb.subscribe();
-
-        this.listStream = this.updateStream.scan(this.list, (items: string[], operation: ItemOperation) => {
+        this.listStream = this.updateStream.scan(this.list, (items: Todo[], operation: ItemOperation) => {
             return operation(items);
         }).startWith(this.list);
 
         this.addItemStream.map(
-            function (item: string): ItemOperation {
-                return (items: string[]) => {
+            function (item: Todo): ItemOperation {
+                return (items: Todo[]) => {
                     return items.concat(item);
                 }
             }
@@ -60,7 +55,7 @@ export class MyTest {
 
         this.deleteItemStream.map(
             function (index:number): ItemOperation {
-                return (items: string[]) => {
+                return (items: Todo[]) => {
                     items.splice(index, 1);
                     return items;
                 }
@@ -71,9 +66,10 @@ export class MyTest {
     }
 
     add() {
-        let newItem:string = String(this.a);
+        let newItem:Todo = new Todo(String(this.newTodo));
+        console.log(newItem);
         this.newItemStream.onNext(newItem);
-        this.a = "";
+        this.newTodo = "";
     }
 
     delete(index) {
