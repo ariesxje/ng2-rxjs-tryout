@@ -8,21 +8,20 @@ interface ItemOperation extends Function {
 
 @Injectable()
 export class TodoService {
-    list: Todo[] = [];
     listStream: Rx.Observable<Todo[]>;
     newItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
-    updateStream: Rx.Subject<any> = new Rx.Subject<any>();
+    updateStream: Rx.Subject<ItemOperation> = new Rx.Subject<ItemOperation>();
     addItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
     existingItemStream: Rx.Subject<number> = new Rx.Subject<number>();
     deleteItemStream: Rx.Subject<number> = new Rx.Subject<number>();
 
     constructor() {
-        this.list = [new Todo('item 1')];
+        let initialList = [new Todo('item 1')];
 
-        this.listStream = this.updateStream.scan(this.list, (items: Todo[], operation: ItemOperation) => {
+        this.listStream = this.updateStream.scan(initialList, (items: Todo[], operation: ItemOperation) => {
             return operation(items);
         })
-            .startWith(this.list)
+            .startWith(initialList)
             .shareReplay(1);//cache
 
         this.addItemStream.map(
@@ -31,8 +30,7 @@ export class TodoService {
                     return items.concat(item);
                 }
             }
-        )
-            .subscribe(this.updateStream);
+        ).subscribe(this.updateStream);
 
         this.newItemStream.subscribe(this.addItemStream);
 
