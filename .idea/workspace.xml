@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2ab1cde8-ef99-4141-acc6-4bf500bda267" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ts/components/MyTest.ts" afterPath="$PROJECT_DIR$/app/ts/components/MyTest.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ts/models.ts" afterPath="$PROJECT_DIR$/app/ts/models.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/typescript-compiler.xml" afterPath="$PROJECT_DIR$/.idea/typescript-compiler.xml" />
     </list>
     <ignored path="angular2-rxjs-chat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,11 +49,12 @@
       <file leaf-file-name="MyTest.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/ts/components/MyTest.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5245399">
-              <caret line="45" column="50" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.398773">
+              <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+                <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+                <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -458,7 +456,8 @@
           <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -548,7 +547,8 @@
           <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -638,7 +638,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -728,7 +729,8 @@
           <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -960,11 +962,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/ts/components/MyTest.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5245399">
-          <caret line="45" column="50" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.398773">
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1450228190000" expanded="true" signature="389:612" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="499:865" placeholder="..." />
+            <marker date="1450230001000" expanded="true" signature="658:863" placeholder="..." />
           </folding>
         </state>
       </provider>

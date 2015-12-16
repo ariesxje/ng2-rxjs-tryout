@@ -1,7 +1,7 @@
 /**
  * Created by kx1447 on 3/12/15.
  */
-import {Component, View, NgFor, FORM_DIRECTIVES} from "angular2/angular2";
+import {Component, View, NgFor, NgClass, FORM_DIRECTIVES} from "angular2/angular2";
 import {RxPipe} from "../util/RxPipe";
 import {Todo} from "../models";
 
@@ -13,12 +13,21 @@ interface ItemOperation extends Function {
     selector: "my-test"
 })
 @View({
-    directives: [NgFor, FORM_DIRECTIVES],
+    directives: [NgFor, NgClass, FORM_DIRECTIVES],
+    styles: [`
+        .done {
+            text-decoration: line-through;
+        }
+    `],
     pipes: [RxPipe],
     template: `
     <div>
         <input type="text" [(ng-model)]="newTodo"><button on-click="add()">add</button>
-        <div *ng-for="#item of listStream | rx; #index=index">{{item.text}} <a href="#" on-click="delete(index)">x</a></div>
+        <div *ng-for="#item of listStream | rx; #index=index">
+            <input type="checkbox" [(ng-model)]="item.isDone">
+            <span [ng-class]="{done: item.isDone}">{{item.text}}</span>
+            <a href="#" on-click="delete(index)">x</a>
+        </div>
     </div>
     `
 })
