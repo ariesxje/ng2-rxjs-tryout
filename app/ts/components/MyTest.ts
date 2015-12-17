@@ -27,6 +27,7 @@ interface ItemOperation extends Function {
             <h3>My TODO List</h3>
             <input type="text" [(ng-model)]="newTodo" (keydown.enter)="add()"><button on-click="add()">add</button>
             <div *ng-for="#item of listStream | rx; #index=index">
+                <input type="checkbox" [(ng-model)]="item.isDone">
                 <span style="cursor: pointer" [ng-class]="{done: item.isDone}" (click)="toggleDone(index)">{{item.text}}</span>
                 <a href="#" on-click="delete(index)">x</a>
             </div>
