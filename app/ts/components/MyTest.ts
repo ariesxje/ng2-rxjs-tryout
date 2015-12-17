@@ -23,11 +23,19 @@ interface ItemOperation extends Function {
     pipes: [RxPipe],
     template: `
     <div>
-        <input type="text" [(ng-model)]="newTodo"><button on-click="add()">add</button>
-        <div *ng-for="#item of listStream | rx; #index=index">
-            <input type="checkbox" [(ng-model)]="item.isDone">
-            <span [ng-class]="{done: item.isDone}">{{item.text}}</span>
-            <a href="#" on-click="delete(index)">x</a>
+        <div style="display: inline-block; vertical-align: top; width: 50%">
+            <h3>My TODO List</h3>
+            <input type="text" [(ng-model)]="newTodo" (keydown.enter)="add()"><button on-click="add()">add</button>
+            <div *ng-for="#item of listStream | rx; #index=index">
+                <span style="cursor: pointer" [ng-class]="{done: item.isDone}" (click)="toggleDone(index)">{{item.text}}</span>
+                <a href="#" on-click="delete(index)">x</a>
+            </div>
+        </div><!--
+        !--><div style="display: inline-block; vertical-align: top; width: 50%">
+            <h3>Done</h3>
+            <div *ng-for="#item of doneListStream | rx">
+                <span>{{item.text}}</span>
+            </div>
         </div>
     </div>
     `
@@ -36,18 +44,26 @@ interface ItemOperation extends Function {
 export class MyTest {
     newTodo: string;
     listStream: Rx.Observable<Todo[]>;
+    doneListStream: Rx.Observable<Todo[]>;
     constructor(public todoService: TodoService) {
         this.newTodo = "";
         this.listStream = todoService.listStream;
+        this.doneListStream = todoService.doneListStream;
     }
 
     add() {
-        let newItem:string = String(this.newTodo);
-        this.todoService.add(newItem);
-        this.newTodo = "";
+        if (this.newTodo) {
+            let newItem:string = String(this.newTodo);
+            this.todoService.add(newItem);
+            this.newTodo = "";
+        }
     }
 
     delete(index) {
         this.todoService.delete(index);
+    }
+
+    toggleDone(index) {
+        this.todoService.toggleDone(index);
     }
 }

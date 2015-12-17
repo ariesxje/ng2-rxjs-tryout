@@ -1,3 +1,4 @@
+/// <reference path="../../typings/app.d.ts" />
 import {Injectable, bind} from "angular2/angular2";
 import * as Rx from "rx";
 import {Todo} from "../models"
@@ -9,11 +10,14 @@ interface ItemOperation extends Function {
 @Injectable()
 export class TodoService {
     listStream: Rx.Observable<Todo[]>;
+    doneListStream: Rx.Observable<Todo[]>;
     newItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
     updateStream: Rx.Subject<ItemOperation> = new Rx.Subject<ItemOperation>();
     addItemStream: Rx.Subject<Todo> = new Rx.Subject<Todo>();
-    existingItemStream: Rx.Subject<number> = new Rx.Subject<number>();
+    toBeDeletedItemStream: Rx.Subject<number> = new Rx.Subject<number>();
     deleteItemStream: Rx.Subject<number> = new Rx.Subject<number>();
+    toBeToggledDoneStream: Rx.Subject<number> = new Rx.Subject<number>();
+    toggleDoneStream: Rx.Subject<number> = new Rx.Subject<number>();
 
     constructor() {
         let initialList = [new Todo('item 1')];
@@ -23,6 +27,12 @@ export class TodoService {
         })
             .startWith(initialList)
             .shareReplay(1);//cache
+
+        this.doneListStream = this.listStream.map((list:Todo[]) => {
+            return list.filter((item: Todo) => {
+                return item.isDone;
+            })
+        })
 
         this.addItemStream.map(
             function (item: Todo): ItemOperation {
@@ -43,7 +53,19 @@ export class TodoService {
             }
         ).subscribe(this.updateStream);
 
-        this.existingItemStream.subscribe(this.deleteItemStream);
+        this.toBeDeletedItemStream.subscribe(this.deleteItemStream);
+
+        this.toggleDoneStream.map(
+            function (index:number): ItemOperation {
+                return (items:Todo[]) => {
+                    let isDone = items[index].isDone;
+                    items[index].isDone = !isDone;
+                    return items;
+                }
+            }
+        ).subscribe(this.updateStream);
+
+        this.toBeToggledDoneStream.subscribe(this.toggleDoneStream);
     }
 
     add(text) {
@@ -52,7 +74,11 @@ export class TodoService {
     }
 
     delete(index) {
-        this.existingItemStream.onNext(index);
+        this.toBeDeletedItemStream.onNext(index);
+    }
+
+    toggleDone(index) {
+        this.toBeToggledDoneStream.onNext(index);
     }
 }
 

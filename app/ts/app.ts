@@ -40,10 +40,10 @@ require("css/styles.scss");
                 MyTest],
   template: `
   <div>
-    <nav-bar></nav-bar>
+    <!--<nav-bar></nav-bar>-->
     <div class="container">
-      <chat-threads></chat-threads>
-      <chat-window></chat-window>
+      <!--<chat-threads></chat-threads>-->
+      <!--<chat-window></chat-window>-->
       <my-test></my-test>
     </div>
   </div>
