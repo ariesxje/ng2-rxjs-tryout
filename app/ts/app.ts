@@ -8,9 +8,6 @@ import {Component, bootstrap, View} from "angular2/angular2";
 /*
  * Components
  */
-import {ChatNavBar} from "./components/ChatNavBar";
-import {ChatThreads} from "./components/ChatThreads";
-import {ChatWindow} from "./components/ChatWindow";
 import {MyTest} from './components/MyTest';
 
 /*
@@ -22,8 +19,6 @@ import {utilInjectables} from "./util/util";
 /*
  * Services
  */
-import {MessagesService, ThreadsService, UserService} from "./services/services";
-import {ChatExampleData} from "./ChatExampleData";
 
 /*
  * Webpack
@@ -34,27 +29,17 @@ require("css/styles.scss");
   selector: "chat-app"
 })
 @View({
-  directives: [ChatNavBar,
-               ChatThreads,
-               ChatWindow,
-                MyTest],
+  directives: [MyTest],
   template: `
   <div>
-    <!--<nav-bar></nav-bar>-->
     <div class="container">
-      <!--<chat-threads></chat-threads>-->
-      <!--<chat-window></chat-window>-->
       <my-test></my-test>
     </div>
   </div>
   `
 })
 class ChatApp {
-  constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService,
-              public userService: UserService) {
-    ChatExampleData.init(messagesService, threadsService, userService);
-
+  constructor() {
   }
 }
 

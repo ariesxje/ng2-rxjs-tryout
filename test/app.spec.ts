@@ -1,13 +1,13 @@
 /// <reference path="../app/typings/app.d.ts" />
 /// <reference path="../typings/jasmine/jasmine.d.ts" />
 
-import {MessagesService} from "../app/ts/services/services";
+import {TodoService} from "../app/ts/services/services";
 import {Calculator} from "calculator";
 
 describe('Hello', () => {
 
   it('should test', () => {
-    let m = MessagesService;
+    let m = TodoService;
   });
 
   it('should add', () => {
