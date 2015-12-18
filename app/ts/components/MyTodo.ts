@@ -42,7 +42,7 @@ interface ItemOperation extends Function {
     `
 })
 
-export class MyTest {
+export class MyTodo {
     newTodo: string;
     listStream: Rx.Observable<Todo[]>;
     doneListStream: Rx.Observable<Todo[]>;

@@ -8,7 +8,7 @@ import {Component, bootstrap, View} from "angular2/angular2";
 /*
  * Components
  */
-import {MyTest} from './components/MyTest';
+import {MyTodo} from './components/MyTodo';
 
 /*
  * Injectables
@@ -29,7 +29,7 @@ require("css/styles.scss");
   selector: "chat-app"
 })
 @View({
-  directives: [MyTest],
+  directives: [MyTodo],
   template: `
   <div>
     <div class="container">
@@ -38,9 +38,9 @@ require("css/styles.scss");
   </div>
   `
 })
-class ChatApp {
+class TODOApp {
   constructor() {
   }
 }
 
-bootstrap(ChatApp, [ servicesInjectables, utilInjectables ]);
+bootstrap(TODOApp, [ servicesInjectables, utilInjectables ]);
